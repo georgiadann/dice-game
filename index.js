@@ -2,10 +2,12 @@
 //Georgia Dann
 //27/07/2021
 
-// let roundPick = prompt('How many rounds would you like to play?');
-// while(roundPick == ''){
-  
-// }
+let roundPick = prompt('How many rounds would you like to play? 1-10');
+if (roundPick ==''){
+  roundPick = prompt('How many rounds would you like to play? 1-10');
+} else{
+  console.log('Enjoy!');
+}
 
 
 // having list of player names ready to be picked
@@ -35,8 +37,9 @@ let pointPlayer1 = 0;
 let pointPlayer2 = 0;
 let round = 1;
 //setting round and points to 0 
-
-play()
+while(round<=roundPick){
+  play()
+}
 function play(){
   roll1 = Math.floor(Math.random() * 6 + 1);
   roll2 = Math.floor(Math.random() * 6 + 1);
@@ -64,12 +67,28 @@ if(roll1 > roll2){
   console.log('Its a draw!');
 }
 
-//state winner
+//make a winner for after rounds
+let winner = name1 || name2;
+if(pointPlayer1 > pointPlayer2){
+  let winner = name1;
+}if(pointPlayer1 < pointPlayer2){
+  let winner = name2;
+} else{
+  let winner = name1 && name2;
+}
+ 
+//state winner of the round
+if(round<roundPick){
 console.log(name1 + ' has '+ pointPlayer1 + ' points!')
 console.log(name2 + ' has '+ pointPlayer2 + ' points!')
-
+} else{
+  console.log(name1 + ' got ' + pointPlayer1 + ' points!');
+  console.log(name2 + ' got ' + pointPlayer2 + ' points!');
+  console.log('Congratulations ' + winner + ', you won!');
+}
 
 round++
 }while(round == roundPick)
+
 }
 
