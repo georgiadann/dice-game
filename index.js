@@ -2,6 +2,12 @@
 //Georgia Dann
 //27/07/2021
 
+// let roundPick = prompt('How many rounds would you like to play?');
+// while(roundPick == ''){
+  
+// }
+
+
 // having list of player names ready to be picked
 randomName1 = ['pogchamp42069','swaggyolympian','spicyfeet','Mark',];
 let newRandomName1 = randomName1[Math.floor(Math.random()* 4 + 0 )];
@@ -23,8 +29,8 @@ if(player2 == ''){
   console.log('Welcome ' + player2 + ', good luck!');
 }
 
-let name1 = (player1name || newRandomName1);
-let name2 = (player2name || newRandomName2);
+let name1 = (player1 || newRandomName1);
+let name2 = (player2 || newRandomName2);
 let pointPlayer1 = 0;
 let pointPlayer2 = 0;
 let round = 1;
@@ -32,19 +38,38 @@ let round = 1;
 
 play()
 function play(){
-  roll = Math.floor(Math.random() * 6 + 1);
+  roll1 = Math.floor(Math.random() * 6 + 1);
+  roll2 = Math.floor(Math.random() * 6 + 1);
 do{
+  //loop for player 1 to roll the dice
  let player1Roll = prompt(name1 + ' type "roll" to roll the dice');
-  if(player1Roll == 'roll'){
-    console.log('You got the number ' + roll);
-  } else{
-    player1Roll = prompt('type "roll" to roll the dice');
-  }
+ while(player1Roll != 'roll'){
+   player1Roll = prompt(name1 + ' type "roll" to roll the dice')
+ } console.log(name1 + ' got ' + roll1);
 
-  let player2Roll = prompt()
+//loop for player 2 to roll the dice
+ let player2Roll = prompt(name2 + ' type "roll" to roll the dice');
+ while(player2Roll != 'roll'){
+   player2Roll = prompt(name2 + ' type "roll" to roll the dice')
+ } console.log(name2 + ' got ' + roll2);
+
+//declare the winner and add points
+if(roll1 > roll2){
+  console.log(name1 + ' wins this round!');
+  pointPlayer1++
+} else if(roll1 < roll2){
+  console.log(name2 + ' wins this round!');
+  pointPlayer2++
+} else{
+  console.log('Its a draw!');
+}
+
+//state winner
+console.log(name1 + ' has '+ pointPlayer1 + ' points!')
+console.log(name2 + ' has '+ pointPlayer2 + ' points!')
 
 
-
-} 
+round++
+}while(round == roundPick)
 }
 
