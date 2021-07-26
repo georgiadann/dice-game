@@ -41,7 +41,7 @@ do{
     player1Roll = prompt('type "roll" to roll the dice');
   }
 
-  let player2Roll
+  let player2Roll = prompt()
 
 
 
