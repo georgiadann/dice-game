@@ -8,9 +8,9 @@ let gameChoice = null;
 while(!isNaN(gameChoice) || gameChoice == null){
     gameChoice = prompt('would you like to play the game as round or race?');
   if(gameChoice == 'race'){
-    let pick = raceChoice();
+     pick = raceChoice();
   } else if(gameChoice == 'round'){
-    let pick = roundChoice();
+     pick = roundChoice();
   }else{
     console.log('Not a valid entry')
   }
@@ -37,28 +37,28 @@ function raceChoice(){
 
 function getNames(){
 // having list of player names ready to be picked
-randomName1 = ['pogchamp42069','swaggyolympian','spicyfeet','Mark',];
-let newRandomName1 = randomName1[Math.floor(Math.random()* 4 + 0 )];
-randomName2 = ['dancercat26','speedybunny','Zac','cheekyfingernail'];
-let newRandomName2 = randomName2[Math.floor(Math.random()* 4 + 0 )];
+  randomName1 = ['pogchamp42069','swaggyolympian','spicyfeet','Mark',];
+  let newRandomName1 = randomName1[Math.floor(Math.random()* 4 + 0 )];
+  randomName2 = ['dancercat26','speedybunny','Zac','cheekyfingernail'];
+  let newRandomName2 = randomName2[Math.floor(Math.random()* 4 + 0 )];
 
-//letting the player 1 choose their name
-let player1 = prompt('Player 1 please enter a name:');
-if(player1 == ''){
-  console.log('welcome ' + newRandomName1 + ', good luck!');
-} else{
-  console.log('Welcome ' + player1 + ', good luck!');
-}
-//letting player 2 choose their name
-let player2 = prompt('Player 2 please enter a name:');
-if(player2 == ''){
-   console.log('welcome ' + newRandomName2 + ', good luck!');
-} else{
-  console.log('Welcome ' + player2 + ', good luck!');
-}
-let name1 = (player1 || newRandomName1);
-let name2 = (player2 || newRandomName2);
-return {name1: name1, name2: name2};
+  //letting the player 1 choose their name
+  let player1 = prompt('Player 1 please enter a name:');
+  if(player1 == ''){
+    console.log('welcome ' + newRandomName1 + ', good luck!');
+  } else{
+    console.log('Welcome ' + player1 + ', good luck!');
+  }
+  //letting player 2 choose their name
+  let player2 = prompt('Player 2 please enter a name:');
+  if(player2 == ''){
+    console.log('welcome ' + newRandomName2 + ', good luck!');
+  } else{
+    console.log('Welcome ' + player2 + ', good luck!');
+  }
+  let name1 = (player1 || newRandomName1);
+  let name2 = (player2 || newRandomName2);
+  return {name1: name1, name2: name2};
 }
 
 //setting round and points to 0
@@ -74,10 +74,14 @@ let names = getNames();
 //if round is smaller than the amount of rounds picked it will play and repeat game 
 
 if(gameChoice == 'race'){
-  playRace(names);
+  while(pointPlayer1<pick && pointPlayer2<pick){
+    playRace(names);
+    
+  }
 } else if(gameChoice == 'round'){
   while(round<= pick){
     playRound(names);
+    round++
     }
 }
 
@@ -91,60 +95,63 @@ function playRace(names){
   let name2 = names.name2
 
   //loop for player 1 to roll the dice
- let player1Roll = prompt(name1 + ' type "roll" to roll the dice');
- while(player1Roll != 'roll'){
-   player1Roll = prompt(name1 + ' type "roll" to roll the dice')
- } console.log(name1 + ' got ' + roll1);
+  let player1Roll = prompt(name1 + ' type "roll" to roll the dice');
+  while(player1Roll != 'roll'){
+    player1Roll = prompt(name1 + ' type "roll" to roll the dice')
+  } console.log(name1 + ' got ' + roll1);
 
-//loop for player 2 to roll the dice
- let player2Roll = prompt(name2 + ' type "roll" to roll the dice');
- while(player2Roll != 'roll'){
-   player2Roll = prompt(name2 + ' type "roll" to roll the dice')
- } console.log(name2 + ' got ' + roll2);
+  //loop for player 2 to roll the dice
+  let player2Roll = prompt(name2 + ' type "roll" to roll the dice');
+  while(player2Roll != 'roll'){
+    player2Roll = prompt(name2 + ' type "roll" to roll the dice')
+  } console.log(name2 + ' got ' + roll2);
 
-//declare the winner and add points
-if(roll1 > roll2){
-  console.log(name1 + ' wins this round!');
-  pointPlayer1++
-} else if(roll1 < roll2){
-  console.log(name2 + ' wins this round!');
-  pointPlayer2++
-} else{
-  console.log('Its a draw!');
-}
-
-//make a winner for after rounds
-let winner = '';
-if(pointPlayer1 > pointPlayer2){
-   winner = name1;
-}else if(pointPlayer1 < pointPlayer2){
-   winner = name2;
-} else{
-   winner = `${name1} ${name2}`;
-}
-
-//state winner of the round
- if(pointPlayer1 >= racePick){
-    console.log('Congratulations '+ name1 + ' You won!');
-    // return;
-  } else if(pointPlayer2>= racePick){
-    console.log('Congratulations '+ name2 + ' You won!');
-    // return;
-  }else if(pointPlayer1< racePick){
-    
-let plural = pointPlayer1!=1?'s':'';
-console.log(`${name1} has ${pointPlayer1} point${plural}!`)
-let plural2 = pointPlayer2!=1?'s':'';
-console.log(`${name2} has ${pointPlayer2} point${plural2}!`)
-    round++
-
-  } else if(pointPlayer2 < racePick){
-    let plural = pointPlayer1!=1?'s':'';
-console.log(`${name1} has ${pointPlayer1} point${plural}!`)
-let plural2 = pointPlayer2!=1?'s':'';
-console.log(`${name2} has ${pointPlayer2} point${plural2}!`)  
-  round++
+  //declare the winner and add points
+  if(roll1 > roll2){
+    console.log(name1 + ' wins this round!');
+    pointPlayer1++
+  } else if(roll1 < roll2){
+    console.log(name2 + ' wins this round!');
+    pointPlayer2++
+  } else{
+    console.log('Its a draw!');
   }
+
+  //make a winner for after rounds
+  let winner = '';
+  if(pointPlayer1 > pointPlayer2){
+    winner = name1;
+  } 
+  else if(pointPlayer1 < pointPlayer2){
+    winner = name2;
+  } 
+  else{
+    winner = `${name1} ${name2}`;
+  }
+
+  //state winner of the round
+  if(pointPlayer1 >= pick){      
+      console.log(`${name1}'s final points: ${pointPlayer1}!`);      
+      console.log(`${name2}'s final points: ${pointPlayer2}!`);
+      console.log('Congratulations '+ name1 + ' You won!');
+    } 
+    else if(pointPlayer2>= pick){     
+      console.log(`${name1}'s final points: ${pointPlayer1}!`);      
+      console.log(`${name2}'s final points: ${pointPlayer2}!`);     
+      console.log('Congratulations '+ name2 + ' You won!');      
+    } 
+    else if(pointPlayer1< pick){ 
+      let plural = pointPlayer1!=1?'s':'';
+      console.log(`${name1} has ${pointPlayer1} point${plural}!`)
+      let plural2 = pointPlayer2!=1?'s':'';
+      console.log(`${name2} has ${pointPlayer2} point${plural2}!`)
+    } 
+    else if(pointPlayer2 < pick){
+      let plural = pointPlayer1!=1?'s':'';
+      console.log(`${name1} has ${pointPlayer1} point${plural}!`)
+      let plural2 = pointPlayer2!=1?'s':'';
+      console.log(`${name2} has ${pointPlayer2} point${plural2}!`)  
+    }
 }
 
 
